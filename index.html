@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eficaz Contabilidade | Contabilidade rural e empresarial em São Borja</title>
+<meta name="description" content="Contabilidade rural e empresarial em São Borja. Produtor rural, Lucro Real, Lucro Presumido, Simples Nacional e MEI. Prepare sua propriedade para o IBS e a CBS em 2027.">
+<meta name="theme-color" content="#f5f4ef">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<script>document.documentElement.classList.add("js")</script>
+<style>
+/* Layout: floating glass nav; asymmetric hero (copy left, animated rural ledger right); obligations ticker;
+   dark Reforma Tributária slab with timeline; services bento sized by priority (rural > Real/Presumido > Simples > MEI);
+   staircase steps; reasons + reviews empty state; FAQ; contact form. Everything collapses to one column under 900px. */
+:root{
+  --bg:#f5f4ef; --surface:#fdfcf9; --sunk:#efede6;
+  --ink:#1a1f1c; --ink-2:#4b524d; --ink-3:#676e68;
+  --rule:#e4e2d9; --rule-2:#d4d1c5;
+  --accent:#1d7a4f; --accent-hover:#17663f; --accent-soft:#e1ede4; --accent-ink:#11492e; --accent-light:#8fcfa9;
+  --night:#161d19; --night-ink:#ecefe9; --night-mute:#9ba59d; --night-rule:rgba(236,239,233,.12);
+  --danger:#b13a2f;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.65,0,.35,1); --spring:cubic-bezier(.34,1.56,.64,1);
+  --shadow:0 30px 60px -32px rgba(52,46,24,.22),0 2px 6px -2px rgba(52,46,24,.06);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+svg{display:block}
+i.ph{display:inline-block;line-height:1;flex:none}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+p{margin:0}
+section{scroll-margin-top:96px}
+.wrap{width:100%;max-width:1280px;margin-inline:auto;padding-inline:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px))}
+.sec{padding-block:clamp(80px,10vw,144px)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 .75rem/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor;opacity:.6}
+.label{display:block;font:500 .6875rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.h2{font-size:clamp(2rem,3.8vw,3.1rem);letter-spacing:-.035em}
+.sub{color:var(--ink-2);max-width:56ch}
+
+/* ---------- buttons ---------- */
+.btn{--mx:0px;--my:0px;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:6px 22px 6px 6px;border:0;border-radius:999px;font:600 .9375rem/1.2 var(--sans);letter-spacing:-.01em;text-decoration:none;cursor:pointer;transform:translate3d(var(--mx),var(--my),0);transition:background-color .35s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease),scale .25s var(--ease);-webkit-tap-highlight-color:transparent}
+.btn:active{scale:.98}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn-ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:1.25rem;transition:transform .5s var(--ease)}
+.btn:hover .btn-ic{transform:rotate(-8deg) scale(1.06)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 14px 28px -16px rgba(29,122,79,.7)}
+.btn-primary .btn-ic{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{padding:6px 22px;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule-2)}
+.btn-ghost:hover{background:var(--surface)}
+.btn-ghost i{transition:transform .5s var(--ease)}
+.btn-ghost:hover i{transform:translateY(2px)}
+.btn-sm{min-height:46px;padding:4px 16px 4px 4px;font-size:.875rem;gap:8px}
+.btn-sm .btn-ic{width:38px;height:38px;font-size:1.125rem}
+.btn-block{width:100%}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-weight:600;font-size:.9375rem;color:var(--accent-ink);text-decoration:none;width:fit-content}
+.link-arrow i{transition:transform .5s var(--ease)}
+.link-arrow:hover i{transform:translateX(4px)}
+.link-arrow:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:12px 0 auto;z-index:40;padding-top:env(safe-area-inset-top,0px);pointer-events:none}
+.nav-bar{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 8px 0 14px;border-radius:999px;background:rgba(250,249,245,.74);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(26,31,28,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 18px 40px -28px rgba(52,46,24,.35)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:var(--ink);display:grid;place-items:center}
+.brand-mark svg{width:20px;height:20px}
+.brand-name{display:grid;line-height:1.05}
+.brand-name b{font-weight:600;font-size:1rem;letter-spacing:-.02em}
+.brand-name small{font:500 .5625rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.nav-links{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;padding:8px 12px;border-radius:999px;font-size:.875rem;font-weight:500;color:var(--ink-2);text-decoration:none;transition:color .3s var(--ease),background-color .3s var(--ease)}
+.nav-links a:hover{color:var(--ink);background:rgba(26,31,28,.05)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;min-height:100dvh;display:grid;align-items:center;padding-block:128px 80px;overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(to bottom,var(--rule) 1px,transparent 1px);background-size:100% 36px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 58%,transparent 94%);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 58%,transparent 94%)}
+.hero::after{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:max(12px,calc((100vw - 1280px)/2 + 12px));width:5px;border-inline:1px solid rgba(29,122,79,.2);-webkit-mask-image:linear-gradient(180deg,transparent,#000 20%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 20%,#000 70%,transparent)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(48px,6vw,96px);align-items:center}
+.hero h1{font-size:clamp(2.25rem,4.4vw,3.6rem);line-height:1.04;letter-spacing:-.045em;margin-top:22px;max-width:18ch}
+.hero h1 span{color:var(--ink-3)}
+.lead{font-size:clamp(1.0625rem,1.3vw,1.1875rem);color:var(--ink-2);max-width:54ch;margin-top:24px}
+.lead strong{color:var(--ink);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 24px;margin:32px 0 0;padding:0;list-style:none;font-size:.875rem;color:var(--ink-2)}
+.trust li{display:inline-flex;align-items:center;gap:8px}
+.trust i{color:var(--accent);font-size:1rem}
+
+.rise{animation:rise 1.1s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms + 100ms)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+
+/* rural ledger (hero asset) */
+.ledger-wrap{position:relative;width:100%;max-width:540px;justify-self:end;animation-name:riseTilt}
+@keyframes riseTilt{from{opacity:0;transform:translateY(40px) rotate(1.5deg)}}
+.ledger-wrap::before{content:"";position:absolute;inset:18px -14px -18px 14px;z-index:-1;border-radius:28px;background:var(--sunk);border:1px solid var(--rule);transform:rotate(2.2deg)}
+.ledger{position:relative;background:var(--surface);border:1px solid var(--rule);border-radius:28px;box-shadow:var(--shadow);padding:8px}
+.lg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 14px 14px}
+.lg-head strong{display:block;font-size:1.0625rem;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+.lg-head small{display:block;font-size:.8125rem;color:var(--ink-3)}
+.online{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font:500 .6875rem/1 var(--mono);white-space:nowrap}
+.dot{position:relative;flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:breathe 2.2s var(--ease) infinite}
+@keyframes breathe{0%{transform:scale(1);opacity:.55}100%{transform:scale(3);opacity:0}}
+.lg-meta{display:flex;flex-wrap:wrap;gap:4px 16px;padding:10px 14px;margin:0 6px;border-block:1px dashed var(--rule-2);font:.75rem/1.4 var(--mono);color:var(--ink-3)}
+.lg-list{list-style:none;margin:4px 0 0;padding:0 6px}
+.row{position:relative;isolation:isolate;display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:12px;padding:11px 8px;border-bottom:1px solid var(--rule)}
+.row-end{display:grid;justify-items:end;gap:5px}
+.row::after{content:"";position:absolute;inset:3px -2px;z-index:-1;border-radius:12px;background:var(--accent-soft);opacity:0}
+.row.just::after{animation:flash 1.8s var(--ease)}
+@keyframes flash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+.row-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--sunk);color:var(--ink-2);font-size:1.125rem;transition:background-color .5s var(--ease),color .5s var(--ease)}
+.row.done .row-ic{background:var(--accent-soft);color:var(--accent)}
+.row-main{min-width:0}
+.row-main b{display:block;font-size:.9rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-main small{display:block;font:.72rem/1.45 var(--mono);color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-val{font:500 .8125rem var(--mono);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font:500 .6875rem/1 var(--mono);white-space:nowrap;box-shadow:inset 0 0 0 1px var(--rule-2);color:var(--ink-2);transition:background-color .5s var(--ease),color .5s var(--ease),box-shadow .5s var(--ease)}
+.chip > span{display:inline-flex;align-items:center;gap:5px}
+.chip .c-done{display:none}
+.row.done .chip,.chip-ok{background:var(--accent-soft);color:var(--accent-ink);box-shadow:none}
+.chip-ok{gap:5px}
+.row.done .c-pend{display:none}
+.row.done .c-done{display:inline-flex}
+.lg-foot{display:grid;grid-template-columns:1fr auto;align-items:end;gap:6px 16px;padding:18px 14px 12px}
+.lg-sum{font:500 1.5rem/1 var(--mono);letter-spacing:-.03em;margin-top:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lg-count{font:.75rem var(--mono);color:var(--ink-3);text-align:right}
+.lg-count b{color:var(--ink);font-weight:500}
+.lg-bar{grid-column:1/-1;height:6px;border-radius:999px;background:var(--sunk);overflow:hidden;margin-top:10px}
+.lg-bar span{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(.2);transition:transform 1s var(--ease)}
+.toast{position:absolute;top:-52px;right:20px;z-index:2;display:flex;align-items:center;gap:10px;max-width:310px;padding:10px 16px 10px 10px;border-radius:16px;background:var(--ink);color:var(--bg);font-size:.8125rem;line-height:1.35;box-shadow:0 20px 40px -20px rgba(26,31,28,.6),inset 0 1px 0 rgba(255,255,255,.08);opacity:0;transform:translateY(10px) scale(.92);transform-origin:top right;transition:opacity .3s var(--ease),transform .6s var(--spring);pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.toast-ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:1rem;flex:none}
+
+/* ---------- ticker ---------- */
+.ticker{border-block:1px solid var(--rule);background:var(--surface)}
+.ticker-in{display:flex;align-items:center;gap:24px;height:68px}
+.ticker-label{flex:none;max-width:13ch}
+.ticker-track{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker-move{display:flex;width:max-content;animation:marquee 52s linear infinite}
+.ticker:hover .ticker-move{animation-play-state:paused}
+.ticker-move ul{display:flex;align-items:center;margin:0;padding:0;list-style:none}
+.ticker-move li{display:flex;align-items:center;gap:28px;padding-right:28px;font:500 .9375rem var(--mono);color:var(--ink-2);white-space:nowrap}
+.ticker-move li::after{content:"";width:5px;height:5px;border-radius:1px;background:var(--accent);opacity:.7;transform:rotate(45deg)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- reforma (dark slab) ---------- */
+.night{position:relative;isolation:isolate;overflow:hidden;margin:clamp(56px,7vw,96px) clamp(8px,1.2vw,16px) 0;border-radius:clamp(28px,4vw,48px);background:var(--night);color:var(--night-ink)}
+.night::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(to bottom,var(--night-rule) 1px,transparent 1px);background-size:100% 36px;-webkit-mask-image:radial-gradient(110% 80% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(110% 80% at 100% 0%,#000,transparent 70%)}
+.night .eyebrow,.night .sub{color:var(--night-mute)}
+.night-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px 24px}
+.night-head{grid-column:1/span 5;align-self:start;position:sticky;top:120px}
+.night-head .h2{margin-top:20px;color:#fff}
+.night-head .sub{margin-top:20px}
+.night-head .btn{margin-top:32px}
+.fine-print{display:flex;gap:8px;margin-top:28px;font-size:.8125rem;line-height:1.5;color:var(--night-mute);max-width:44ch}
+.fine-print i{margin-top:2px}
+.tl{grid-column:7/span 6;list-style:none;margin:0;padding:0}
+.tl-item{position:relative;display:grid;grid-template-columns:clamp(96px,11vw,140px) minmax(0,1fr);gap:8px 24px;padding:0 0 52px 40px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:0;top:8px;width:11px;height:11px;border-radius:50%;background:var(--night);box-shadow:inset 0 0 0 1.5px var(--night-mute);transition:background-color .6s var(--ease),box-shadow .6s var(--ease)}
+.tl-item::after,.tl-fill{content:"";position:absolute;left:5px;top:28px;bottom:0;width:1px;background:var(--night-rule)}
+.tl-fill{background:var(--accent-light);transform:scaleY(0);transform-origin:top;transition:transform 1.4s var(--ease) .25s}
+.tl-item:last-child::after,.tl-item:last-child .tl-fill{display:none}
+.tl-item.in .tl-fill{transform:scaleY(1)}
+.tl-item.in::before{background:var(--accent-light);box-shadow:none}
+.tl-year{font:500 clamp(1.5rem,2.4vw,2rem)/1 var(--mono);letter-spacing:-.04em;color:var(--night-mute);transition:color .8s var(--ease)}
+.tl-item.in .tl-year{color:#fff}
+.tl-item.key.in .tl-year{color:var(--accent-light)}
+.tl-tag{font:500 .6875rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--night-mute)}
+.tl-item.key .tl-tag{color:var(--accent-light)}
+.tl-body h3{font-size:1.25rem;letter-spacing:-.02em;margin-top:10px;color:#fff}
+.tl-body p{margin-top:8px;color:var(--night-mute);font-size:.9375rem;max-width:46ch}
+.tl-pulse{position:absolute;left:0;top:8px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 1.5px var(--accent-light);opacity:0}
+.tl-item.key.in .tl-pulse{animation:ring 2.4s var(--ease) infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+.credits-label{display:block;margin-top:22px;color:var(--night-mute)}
+.credits{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
+.credits li{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 13px 0 11px;border-radius:999px;background:rgba(143,207,169,.08);box-shadow:inset 0 0 0 1px rgba(143,207,169,.2);color:#dcefe2;font-size:.8125rem}
+.credits i{color:var(--accent-light);font-size:1rem}
+.js .credits li{opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease),transform .6s var(--spring);transition-delay:calc(var(--i) * 70ms + .5s)}
+.js .tl-item.in .credits li{opacity:1;transform:none}
+
+/* ---------- section heads ---------- */
+.sec-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 24px;align-items:end;margin-bottom:clamp(44px,5vw,72px)}
+.sec-head > div{grid-column:1/span 7}
+.sec-head .h2{margin-top:20px}
+.sec-head > p{grid-column:9/span 4}
+
+/* ---------- services bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px clamp(16px,2vw,28px)}
+.tile{display:grid;gap:22px;align-content:start;min-width:0}
+.tile-feature{grid-column:1/-1;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,64px);align-items:center}
+.tile-real{grid-column:span 5}
+.tile-simples{grid-column:span 4}
+.tile-mei{grid-column:span 3}
+.stage{position:relative;height:280px;border-radius:28px;background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);display:grid;place-items:center;padding:28px;overflow:hidden;transition:transform .6s var(--ease)}
+.tile:hover .stage{transform:translateY(-4px)}
+.tile-feature .stage{height:380px;padding:68px clamp(24px,3vw,44px) 36px}
+.stage-badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font:500 .6875rem/1 var(--mono)}
+.tile-copy{display:grid;gap:10px;align-content:start;padding-inline:4px}
+.tile-copy .t{display:flex;align-items:center;gap:10px}
+.tile-copy .t i{font-size:1.375rem;color:var(--accent)}
+.tile-copy h3{font-size:1.25rem;letter-spacing:-.02em}
+.tile-copy p{color:var(--ink-2);font-size:.9375rem;max-width:48ch}
+.tile-feature .tile-copy h3{font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:-.035em}
+.tile-feature .tile-copy p{font-size:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px;padding:0;list-style:none}
+.tags li{font:500 .6875rem/1 var(--mono);padding:8px 11px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule-2);color:var(--ink-2)}
+
+/* feature visual: expense categories */
+.cat{width:100%;max-width:580px;display:grid;gap:20px}
+.cat-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cat-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.cat-list li{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr) 3.4rem;align-items:center;gap:14px;font-size:.875rem;color:var(--ink-2)}
+.cat-bar{height:10px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.cat-bar span{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--v));transition:transform 1.3s var(--ease);transition-delay:calc(var(--i) * 110ms)}
+.cat.reset .cat-bar span{transform:scaleX(0);transition-duration:.5s;transition-delay:0s}
+.cat-pct{font:500 .8125rem var(--mono);text-align:right;color:var(--ink)}
+.cat-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;padding-top:14px;border-top:1px dashed var(--rule-2);font:.75rem var(--mono);color:var(--ink-3)}
+.cat-foot b{color:var(--ink);font-weight:500}
+
+/* real x presumido */
+.cmp{width:100%;max-width:400px;display:grid;gap:18px}
+.cmp-row{display:grid;gap:8px}
+.cmp-top{display:flex;justify-content:space-between;gap:12px;font-size:.875rem;color:var(--ink-2)}
+.cmp-top b{font:500 .875rem var(--mono);color:var(--ink)}
+.cmp-bar{height:12px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.cmp-bar span{display:block;height:100%;background:var(--ink-3);transform-origin:left;transform:scaleX(var(--v));transition:transform 1.2s var(--ease)}
+.cmp-row.win .cmp-bar span{background:var(--accent);transition-delay:.18s}
+.cmp.reset .cmp-bar span{transform:scaleX(0);transition-duration:.5s;transition-delay:0s}
+.cmp-win{display:inline-flex;align-items:center;gap:6px;width:fit-content;height:30px;padding:0 12px 0 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font:500 .75rem/1 var(--mono);transition:opacity .4s var(--ease) 1.2s,transform .6s var(--spring) 1.2s}
+.cmp.reset .cmp-win{opacity:0;transform:translateY(6px) scale(.9);transition-delay:0s}
+
+/* simples checklist */
+.chk{width:100%;max-width:340px;display:grid;gap:14px}
+.chk-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chk-done{transition:opacity .4s var(--ease) 1.9s,transform .6s var(--spring) 1.9s}
+.chk.reset .chk-done{opacity:0;transform:scale(.85);transition-delay:0s}
+.chk ul{list-style:none;margin:0;padding:0}
+.chk li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:.875rem;color:var(--ink);transition:color .4s var(--ease);transition-delay:calc(var(--i) * 380ms + .2s)}
+.chk li small{font:.6875rem var(--mono);color:var(--ink-3)}
+.tick{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:.75rem;transition:background-color .4s var(--ease),color .4s var(--ease),box-shadow .4s var(--ease),transform .5s var(--spring);transition-delay:calc(var(--i) * 380ms + .2s)}
+.chk.reset li{color:var(--ink-3);transition-delay:0s}
+.chk.reset .tick{background:transparent;color:transparent;box-shadow:inset 0 0 0 1.5px var(--rule-2);transform:scale(.85);transition-delay:0s}
+
+/* mei meter */
+.mei{width:100%;max-width:300px;display:grid;gap:6px}
+.mei-num{font:500 clamp(2.4rem,3.6vw,3rem)/1 var(--mono);letter-spacing:-.05em;margin-top:8px;transition:opacity .4s var(--ease)}
+.mei-num small{font-size:.45em;color:var(--ink-3);margin-left:2px}
+.mei.reset .mei-num{opacity:.35}
+.mei p{font-size:.8125rem;color:var(--ink-3)}
+.mei-bar{position:relative;height:10px;margin-top:14px;border-radius:999px;background:var(--sunk)}
+.mei-bar span{position:absolute;inset:0;border-radius:inherit;background:var(--accent);transform-origin:left;transform:scaleX(var(--v));transition:transform 1.5s var(--ease)}
+.mei.reset .mei-bar span{transform:scaleX(0);transition-duration:.5s}
+.mei-flag{position:absolute;left:90%;top:-5px;bottom:-5px;width:1.5px;border-radius:1px;background:var(--ink-3)}
+.mei-scale{display:flex;justify-content:space-between;margin-top:6px;font:.6875rem var(--mono);color:var(--ink-3)}
+
+/* also list */
+.also{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:clamp(72px,8vw,112px);padding-top:32px;border-top:1px solid var(--rule)}
+.also-head{grid-column:1/span 4}
+.also-head p{margin-top:12px;color:var(--ink-2);max-width:32ch}
+.also-list{grid-column:6/span 7;list-style:none;margin:0;padding:0}
+.also-list a{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.also-list li:first-child a{padding-top:0}
+.also-list a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+.also-ic{width:44px;height:44px;border-radius:14px;background:var(--sunk);display:grid;place-items:center;font-size:1.25rem;color:var(--ink-2);transition:background-color .4s var(--ease),color .4s var(--ease)}
+.also-list a:hover .also-ic{background:var(--accent-soft);color:var(--accent)}
+.also-t b{display:block;font-weight:600;letter-spacing:-.01em}
+.also-t small{display:block;color:var(--ink-2);font-size:.875rem;line-height:1.5;margin-top:2px}
+.also-go{font-size:1.125rem;color:var(--ink-3);transition:transform .5s var(--ease),color .3s var(--ease)}
+.also-list a:hover .also-go{transform:translate(3px,-3px);color:var(--accent)}
+
+/* ---------- steps (staircase) ---------- */
+.stair{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);list-style:none;margin:0;padding:0;align-items:start}
+.stair li{position:relative;padding-top:28px}
+.stair li:nth-child(2){margin-top:64px}
+.stair li:nth-child(3){margin-top:128px}
+.stair li::before,.stair-fill{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--rule-2)}
+.stair-fill{background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease) calc(var(--i) * 150ms + .2s)}
+.stair li.in .stair-fill{transform:scaleX(1)}
+.stair-n{display:block;font:500 clamp(2.75rem,5vw,4.25rem)/1 var(--mono);letter-spacing:-.06em;color:var(--accent)}
+.stair h3{font-size:1.375rem;letter-spacing:-.02em;margin-top:22px}
+.stair p{margin-top:10px;color:var(--ink-2);max-width:34ch}
+.stair .chip{margin-top:18px}
+
+/* ---------- why + reviews ---------- */
+.why-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px 24px;align-items:start}
+.why-main{grid-column:1/span 6}
+.why-main .h2{margin-top:20px}
+.reasons{list-style:none;margin:40px 0 0;padding:0}
+.reasons li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid var(--rule)}
+.reasons li:last-child{border-bottom:1px solid var(--rule)}
+.r-ic{width:44px;height:44px;border-radius:14px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-size:1.25rem}
+.reasons b{display:block;font-weight:600;letter-spacing:-.01em}
+.reasons div > span{display:block;color:var(--ink-2);font-size:.9375rem;margin-top:2px}
+.reviews{grid-column:8/span 5;position:sticky;top:112px;background:var(--surface);border:1px solid var(--rule);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,3vw,32px)}
+.rv-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:18px;border-bottom:1px dashed var(--rule-2)}
+.rv-src{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9375rem}
+.rv-src i{font-size:1.25rem}
+.stars{display:flex;gap:2px;color:var(--rule-2);font-size:1rem}
+.skel{display:grid;gap:20px;padding:24px 0}
+.sk{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start}
+.sk-lines{display:grid;gap:8px;padding-top:4px}
+.sk-av,.sk-line{position:relative;overflow:hidden;background:var(--sunk)}
+.sk-av{width:40px;height:40px;border-radius:50%}
+.sk-line{height:10px;border-radius:6px}
+.sk-av::after,.sk-line::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:translateX(-100%);animation:shimmer 1.9s var(--ease) infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.rv-empty{padding-top:22px;border-top:1px dashed var(--rule-2)}
+.rv-empty b{display:block;font-size:1.0625rem;letter-spacing:-.01em}
+.rv-empty p{color:var(--ink-2);font-size:.9rem;margin-top:6px}
+.rv-empty .link-arrow{margin-top:14px}
+
+/* ---------- faq ---------- */
+.faq-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;align-items:start}
+.faq-head{grid-column:1/span 4;position:sticky;top:112px}
+.faq-head .h2{margin-top:20px}
+.faq-head p{margin-top:18px;color:var(--ink-2)}
+.faq{grid-column:6/span 7}
+.faq details{border-top:1px solid var(--rule)}
+.faq details:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;cursor:pointer;list-style:none;font-size:1.0625rem;font-weight:500;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+.faq-x{flex:none;width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--rule-2);display:grid;place-items:center;color:var(--ink-2);transition:transform .5s var(--ease),background-color .3s var(--ease),color .3s var(--ease)}
+.faq details[open] .faq-x{transform:rotate(45deg);background:var(--ink);color:var(--bg);box-shadow:none}
+.faq-a{padding:0 56px 26px 0;color:var(--ink-2);max-width:62ch}
+.faq details[open] .faq-a{animation:faqIn .6s var(--ease)}
+@keyframes faqIn{from{opacity:0;transform:translateY(-6px)}}
+
+/* ---------- contact + form ---------- */
+.contact-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px 24px;align-items:start}
+.contact-main{grid-column:1/span 5}
+.contact-main .h2{margin-top:20px}
+.contact-main .sub{margin-top:20px}
+.contact-main .btn{margin-top:32px}
+.addr{display:grid;gap:20px;margin:40px 0 0;padding:28px 0 0;border-top:1px solid var(--rule)}
+.addr div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px}
+.addr dt{padding-top:4px}
+.addr dd{margin:0;font-weight:500}
+.addr dd a{text-decoration:none}
+.addr dd a:hover{text-decoration:underline}
+.map{margin:32px 0 0}
+.map-frame{position:relative;isolation:isolate;height:280px;border-radius:22px;overflow:hidden;background:var(--sunk);border:1px solid var(--rule);box-shadow:var(--shadow)}
+.map-frame::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);transform:translateX(-100%);animation:shimmer 1.6s var(--ease) infinite}
+.map.loaded .map-frame::before{animation:none;opacity:0}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(1.03);transition:filter .6s var(--ease)}
+.map:hover iframe,.map:focus-within iframe{filter:none}
+.map-cap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;margin-top:14px;font-size:.875rem;color:var(--ink-2)}
+.map-cap > span{display:inline-flex;align-items:center;gap:6px}
+.map-cap > span i{color:var(--accent);font-size:1rem}
+.form{grid-column:7/span 6;display:grid;gap:22px;background:var(--surface);border:1px solid var(--rule);border-radius:28px;box-shadow:var(--shadow);padding:clamp(24px,3.2vw,40px)}
+.form-head h3{font-size:1.5rem;letter-spacing:-.025em}
+.form-head p{margin-top:6px;color:var(--ink-2);font-size:.9375rem}
+.field{display:grid;gap:8px;min-width:0}
+.field > label,.field legend{font-size:.875rem;font-weight:600;color:var(--ink)}
+fieldset.field{border:0;margin:0;padding:0}
+fieldset.field legend{padding:0;margin-bottom:8px}
+.input{width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid var(--rule-2);background:var(--bg);font:inherit;font-size:1rem;color:var(--ink);transition:border-color .25s var(--ease),box-shadow .25s var(--ease),background-color .25s var(--ease)}
+.input::placeholder{color:var(--ink-3)}
+.input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(29,122,79,.12)}
+.input[aria-invalid="true"]{border-color:var(--danger);box-shadow:0 0 0 4px rgba(177,58,47,.1)}
+.help{font-size:.8125rem;color:var(--ink-3)}
+.err{display:flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:500;color:var(--danger)}
+.err[hidden]{display:none}
+.shake{animation:shake .45s var(--ease)}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill span{display:inline-flex;align-items:center;height:40px;padding:0 15px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule-2);font-size:.875rem;color:var(--ink-2);cursor:pointer;transition:background-color .3s var(--ease),box-shadow .3s var(--ease),color .3s var(--ease),scale .2s var(--ease)}
+.pill span:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink-3)}
+.pill span:active{scale:.97}
+.pill input:checked + span{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent-ink);font-weight:500}
+.pill input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.fine{display:flex;justify-content:center;align-items:center;gap:6px;font-size:.78rem;color:var(--ink-3);text-align:center}
+.btn.loading{pointer-events:none;overflow:hidden}
+.btn.loading::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-100%);animation:shimmer 1s var(--ease) infinite}
+.form-done{display:grid;gap:14px;justify-items:start;padding-block:12px}
+.form-done[hidden]{display:none}
+.form-done:focus{outline:none}
+.done-ic{width:56px;height:56px;border-radius:18px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:1.75rem;animation:pop .6s var(--spring)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.form-done h3{font-size:1.5rem;letter-spacing:-.025em}
+.form-done p{color:var(--ink-2)}
+.text-btn{background:none;border:0;padding:0;font:inherit;font-size:.875rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.form-body{display:grid;gap:22px}
+.form.is-done .form-body{display:none}
+
+/* ---------- footer + fab ---------- */
+.foot{padding-block:32px calc(32px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule);font-size:.8125rem;color:var(--ink-3)}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+.foot a{color:var(--ink-2);text-decoration:none}
+.foot a:hover{text-decoration:underline}
+.fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:1.875rem;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 14px 28px -12px rgba(29,122,79,.6);opacity:0;transform:translateY(140%);transition:opacity .3s var(--ease),transform .7s var(--spring),scale .2s var(--ease);pointer-events:none}
+.fab.show{opacity:1;transform:none;pointer-events:auto}
+.fab:active{scale:.95}
+.fab::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 2px var(--accent);animation:ring 2.6s var(--ease) infinite}
+
+/* ---------- reveal ---------- */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .tile-real{grid-column:span 7}
+  .tile-simples{grid-column:span 5}
+  .tile-mei{grid-column:1/-1}
+  .tile-mei .stage{height:240px}
+  .tl{grid-column:6/span 7}
+  .tl-item{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .hero{padding-block:112px 64px}
+  .hero::after{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .ledger-wrap{justify-self:stretch;max-width:560px}
+  .sec-head > div,.sec-head > p{grid-column:1/-1}
+  .night-head,.tl{grid-column:1/-1}
+  .night-head{position:static}
+  .tl-item{grid-template-columns:1fr}
+  .tile-feature{grid-template-columns:1fr}
+  .also-head,.also-list{grid-column:1/-1}
+  .stair{grid-template-columns:1fr;gap:44px}
+  .stair li:nth-child(n){margin-top:0}
+  .why-main,.reviews,.faq-head,.faq,.contact-main,.form{grid-column:1/-1}
+  .reviews,.faq-head{position:static}
+}
+@media (max-width:760px){
+  .tile-real,.tile-simples,.tile-mei{grid-column:1/-1}
+  .tile .stage{height:260px}
+  .tile-feature .stage{height:auto;min-height:380px}
+  .sec{padding-block:72px}
+}
+@media (max-width:560px){
+  .cta-row .btn{width:100%}
+  .brand-name small{display:none}
+  .toast{right:8px;top:-44px;max-width:calc(100% - 16px)}
+  .ledger-wrap::before{inset:14px -6px -14px 6px}
+  .cat-list li{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px}
+  .cat-bar{grid-column:1/-1;order:3}
+  .addr div{grid-template-columns:1fr;gap:4px}
+  .map-frame{height:240px}
+  .faq-a{padding-right:0}
+  .ticker-label{display:none}
+  .hide-sm{display:none}
+  .lg-foot{grid-template-columns:1fr}
+  .lg-count{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .ticker-move{animation:none!important}
+  .dot::after,.fab::after,.sk-av::after,.sk-line::after,.tl-pulse,.map-frame::before{animation:none!important;opacity:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-bar">
+      <a class="brand" href="#topo" aria-label="Eficaz Contabilidade, início">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 6h8M4 10h5" stroke="#f5f4ef" stroke-width="1.6" stroke-linecap="round"/><path d="M10.5 13.4l2.2 2.2 4.3-4.7" stroke="#8fcfa9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-name"><b>Eficaz</b><small>Contabilidade</small></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#reforma">Reforma 2027</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#duvidas">Dúvidas</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a class="btn btn-primary btn-sm magnetic" data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">
+        <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="hero" aria-labelledby="hero-t">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow rise" style="--i:0">Contabilidade rural e empresarial · São Borja, RS</span>
+        <h1 id="hero-t" class="rise" style="--i:1">Em 2027, o imposto que você paga na produção vira crédito. <span>Se as notas estiverem em ordem.</span></h1>
+        <p class="lead rise" style="--i:2">Com a Reforma Tributária, o produtor rural contribuinte do <strong>IBS e da CBS</strong> passa a se creditar do imposto pago em insumos, diesel, máquinas e frete. A Eficaz organiza a contabilidade da sua propriedade para esse crédito não ficar na mesa.</p>
+        <div class="cta-row rise" style="--i:3">
+          <a class="btn btn-primary magnetic" data-wa="Olá! Sou produtor rural e quero preparar minha propriedade para o IBS e a CBS em 2027." href="#contato">
+            <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Falar sobre contabilidade rural
+          </a>
+          <a class="btn btn-ghost" href="#servicos">Ver todos os serviços <i class="ph ph-arrow-down"></i></a>
+        </div>
+        <ul class="trust rise" style="--i:4">
+          <li><i class="ph ph-check"></i>Escritório no centro de São Borja</li>
+          <li><i class="ph ph-check"></i>Lucro Real, Presumido, Simples e MEI</li>
+          <li><i class="ph ph-check"></i>Resposta no mesmo dia</li>
+        </ul>
+      </div>
+
+      <div class="ledger-wrap rise" style="--i:3" data-ledger aria-hidden="true">
+        <div class="ledger">
+          <div class="lg-head">
+            <div>
+              <span class="label">Livro-caixa rural</span>
+              <strong>Granja Três Capões</strong>
+              <small>Arroz irrigado e soja</small>
+            </div>
+            <span class="online"><span class="dot"></span><span class="hide-sm">Contador&nbsp;</span>online</span>
+          </div>
+          <div class="lg-meta"><span>Simulação · março de 2027</span><span>Produtor rural PF</span><span>Safra 26/27</span></div>
+          <ol class="lg-list">
+            <li class="row" data-val="14380" data-toast="Frete lançado. O imposto pago vira crédito.">
+              <span class="row-ic"><i class="ph ph-truck"></i></span>
+              <span class="row-main"><b>Frete da colheita</b><small>CT-e 1.207 · 07/03</small></span>
+              <span class="row-end"><span class="row-val">R$ 14.380,00</span><span class="chip"><span class="c-pend"><i class="ph ph-clock"></i>A lançar</span><span class="c-done"><i class="ph ph-check"></i>Gera crédito</span></span></span>
+            </li>
+            <li class="row" data-val="9284.90" data-toast="Nota das peças conferida e lançada.">
+              <span class="row-ic"><i class="ph ph-wrench"></i></span>
+              <span class="row-main"><b>Peças da colheitadeira</b><small>NF 9.334 · 11/03</small></span>
+              <span class="row-end"><span class="row-val">R$ 9.284,90</span><span class="chip"><span class="c-pend"><i class="ph ph-clock"></i>A lançar</span><span class="c-done"><i class="ph ph-check"></i>Gera crédito</span></span></span>
+            </li>
+            <li class="row" data-val="21947.35" data-toast="Secagem e armazenagem lançadas no livro-caixa.">
+              <span class="row-ic"><i class="ph ph-warehouse"></i></span>
+              <span class="row-main"><b>Secagem e armazenagem</b><small>NF 2.561 · 18/03</small></span>
+              <span class="row-end"><span class="row-val">R$ 21.947,35</span><span class="chip"><span class="c-pend"><i class="ph ph-clock"></i>A lançar</span><span class="c-done"><i class="ph ph-check"></i>Gera crédito</span></span></span>
+            </li>
+            <li class="row" data-val="12731.48" data-toast="Energia da irrigação lançada. Mês fechado.">
+              <span class="row-ic"><i class="ph ph-lightning"></i></span>
+              <span class="row-main"><b>Energia da irrigação</b><small>Fatura de fevereiro</small></span>
+              <span class="row-end"><span class="row-val">R$ 12.731,48</span><span class="chip"><span class="c-pend"><i class="ph ph-clock"></i>A lançar</span><span class="c-done"><i class="ph ph-check"></i>Gera crédito</span></span></span>
+            </li>
+            <li class="row done" data-val="38106.60" data-toast="Nota do diesel lançada.">
+              <span class="row-ic"><i class="ph ph-gas-pump"></i></span>
+              <span class="row-main"><b>Óleo diesel · 6.000 L</b><small>NF 4.812 · 03/03</small></span>
+              <span class="row-end"><span class="row-val">R$ 38.106,60</span><span class="chip"><span class="c-pend"><i class="ph ph-clock"></i>A lançar</span><span class="c-done"><i class="ph ph-check"></i>Gera crédito</span></span></span>
+            </li>
+          </ol>
+          <div class="lg-foot">
+            <div>
+              <span class="label">Despesas que geram crédito</span>
+              <div class="lg-sum" data-lg-sum>R$ 38.106,60</div>
+            </div>
+            <div class="lg-count"><b data-lg-count>1</b> de 5 notas lançadas</div>
+            <div class="lg-bar"><span data-lg-bar></span></div>
+          </div>
+        </div>
+        <div class="toast" role="presentation"><span class="toast-ic"><i class="ph ph-check"></i></span><span data-toast-text>Nota lançada.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Obrigações que entregamos">
+    <div class="wrap ticker-in">
+      <span class="label ticker-label">O que a gente entrega</span>
+      <div class="ticker-track">
+        <div class="ticker-move">
+          <ul>
+            <li>LCDPR</li><li>ITR</li><li>Funrural</li><li>Nota do produtor</li><li>IBS e CBS</li><li>SPED Contribuições</li><li>ECD</li><li>ECF</li><li>EFD-Reinf</li><li>DCTFWeb</li><li>eSocial</li><li>FGTS Digital</li><li>DAS</li><li>DEFIS</li><li>DASN-SIMEI</li><li>IRPF</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>LCDPR</li><li>ITR</li><li>Funrural</li><li>Nota do produtor</li><li>IBS e CBS</li><li>SPED Contribuições</li><li>ECD</li><li>ECF</li><li>EFD-Reinf</li><li>DCTFWeb</li><li>eSocial</li><li>FGTS Digital</li><li>DAS</li><li>DEFIS</li><li>DASN-SIMEI</li><li>IRPF</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="night sec" id="reforma" aria-labelledby="reforma-t">
+    <div class="wrap night-grid">
+      <div class="night-head reveal">
+        <span class="eyebrow">01 — Reforma Tributária</span>
+        <h2 class="h2" id="reforma-t">O que muda para o produtor rural até 2033.</h2>
+        <p class="sub">O IBS e a CBS vão substituir aos poucos o PIS, a Cofins, o ICMS e o ISS. Para o produtor rural contribuinte, a maior mudança é poder se creditar do imposto pago nas compras da produção.</p>
+        <a class="btn btn-primary magnetic" data-wa="Olá! Sou produtor rural e quero entender como a Reforma Tributária afeta a minha propriedade." href="#contato">
+          <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Entender o meu caso
+        </a>
+        <p class="fine-print"><i class="ph ph-info"></i>Conteúdo informativo. As regras variam conforme o faturamento e o enquadramento de cada produtor.</p>
+      </div>
+
+      <ol class="tl">
+        <li class="tl-item reveal">
+          <span class="tl-year">2026</span>
+          <div class="tl-body">
+            <span class="tl-tag">Ano de teste</span>
+            <h3>As notas já mostram IBS e CBS</h3>
+            <p>Os dois tributos aparecem destacados nas notas fiscais com alíquotas de teste. É a hora de organizar o cadastro e o livro-caixa da propriedade.</p>
+          </div>
+          <span class="tl-fill"></span>
+        </li>
+        <li class="tl-item key reveal">
+          <span class="tl-pulse"></span>
+          <span class="tl-year">2027</span>
+          <div class="tl-body">
+            <span class="tl-tag">Ponto de virada</span>
+            <h3>Começa o crédito nas despesas</h3>
+            <p>A CBS entra em vigor no lugar do PIS e da Cofins. O produtor contribuinte passa a abater o imposto pago nas compras da produção.</p>
+            <span class="label credits-label">O que pode virar crédito</span>
+            <ul class="credits">
+              <li style="--i:0"><i class="ph ph-plant"></i>Sementes e mudas</li>
+              <li style="--i:1"><i class="ph ph-flask"></i>Fertilizantes e defensivos</li>
+              <li style="--i:2"><i class="ph ph-gas-pump"></i>Óleo diesel</li>
+              <li style="--i:3"><i class="ph ph-tractor"></i>Máquinas e peças</li>
+              <li style="--i:4"><i class="ph ph-truck"></i>Frete e armazenagem</li>
+              <li style="--i:5"><i class="ph ph-lightning"></i>Energia elétrica</li>
+            </ul>
+          </div>
+          <span class="tl-fill"></span>
+        </li>
+        <li class="tl-item reveal">
+          <span class="tl-year">2029–32</span>
+          <div class="tl-body">
+            <span class="tl-tag">Transição</span>
+            <h3>O IBS sobe, ICMS e ISS diminuem</h3>
+            <p>A troca acontece em etapas, ano a ano. Quem tem a contabilidade em dia atravessa a transição sem susto.</p>
+          </div>
+          <span class="tl-fill"></span>
+        </li>
+        <li class="tl-item reveal">
+          <span class="tl-year">2033</span>
+          <div class="tl-body">
+            <span class="tl-tag">Modelo completo</span>
+            <h3>Fim do ICMS e do ISS</h3>
+            <p>O sistema novo passa a valer por completo, com IBS e CBS no lugar dos tributos antigos.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="servicos" aria-labelledby="servicos-t">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">02 — Quem atendemos</span>
+          <h2 class="h2" id="servicos-t">Do produtor rural à empresa do Lucro Real.</h2>
+        </div>
+        <p class="sub">Atendemos produtores rurais, empresas do Lucro Real, do Lucro Presumido e do Simples Nacional, e também MEIs. Cada um com a rotina e as obrigações certas.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile tile-feature reveal">
+          <div class="stage">
+            <span class="stage-badge"><span class="dot"></span>Reforma Tributária 2027</span>
+            <div class="cat" data-cat aria-hidden="true">
+              <div class="cat-head"><span class="label">Despesas da safra 26/27</span><span class="chip chip-ok"><i class="ph ph-check"></i>Com nota fiscal</span></div>
+              <ul class="cat-list">
+                <li style="--i:0;--v:.874"><span>Insumos</span><span class="cat-bar"><span></span></span><b class="cat-pct">43,7%</b></li>
+                <li style="--i:1;--v:.428"><span>Máquinas e peças</span><span class="cat-bar"><span></span></span><b class="cat-pct">21,4%</b></li>
+                <li style="--i:2;--v:.364"><span>Óleo diesel</span><span class="cat-bar"><span></span></span><b class="cat-pct">18,2%</b></li>
+                <li style="--i:3;--v:.192"><span>Frete e armazenagem</span><span class="cat-bar"><span></span></span><b class="cat-pct">9,6%</b></li>
+                <li style="--i:4;--v:.142"><span>Energia da irrigação</span><span class="cat-bar"><span></span></span><b class="cat-pct">7,1%</b></li>
+              </ul>
+              <div class="cat-foot"><span>1.142 notas no ano</span><span>Total <b>R$ 1.284.907,40</b></span></div>
+            </div>
+          </div>
+          <div class="tile-copy">
+            <span class="label">Produtor rural</span>
+            <h3>Contabilidade rural</h3>
+            <p>Livro-caixa digital (LCDPR), ITR, Funrural e notas de produtor organizados mês a mês. Sua propriedade pronta para aproveitar o crédito do IBS e da CBS a partir de 2027.</p>
+            <ul class="tags"><li>LCDPR</li><li>ITR</li><li>Funrural</li><li>Nota do produtor</li><li>IBS e CBS</li></ul>
+            <a class="link-arrow" data-wa="Olá! Sou produtor rural e quero saber sobre a contabilidade rural da Eficaz." href="#contato">Falar sobre contabilidade rural <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile-real reveal" style="--i:0">
+          <div class="stage">
+            <div class="cmp" data-cmp aria-hidden="true">
+              <span class="label">Simulação anual de impostos</span>
+              <div class="cmp-row"><div class="cmp-top"><span>Lucro Presumido</span><b>R$ 284.910</b></div><div class="cmp-bar"><span style="--v:1"></span></div></div>
+              <div class="cmp-row win"><div class="cmp-top"><span>Lucro Real</span><b>R$ 243.530</b></div><div class="cmp-bar"><span style="--v:.855"></span></div></div>
+              <span class="cmp-win"><i class="ph ph-check-circle"></i>Menor carga para este caso</span>
+            </div>
+          </div>
+          <div class="tile-copy">
+            <div class="t"><i class="ph ph-buildings"></i><h3>Lucro Real e Presumido</h3></div>
+            <p>Apuração completa, SPED, ECD e ECF. Comparamos os regimes para sua empresa pagar o menor imposto dentro da lei.</p>
+            <a class="link-arrow" data-wa="Olá! Tenho uma empresa no Lucro Real ou Presumido e quero falar sobre a contabilidade." href="#contato">Falar sobre minha empresa <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile-simples reveal" style="--i:1">
+          <div class="stage">
+            <div class="chk" data-chk aria-hidden="true">
+              <div class="chk-head"><span class="label">Fechamento do mês</span><span class="chip chip-ok chk-done"><i class="ph ph-check"></i>Mês fechado</span></div>
+              <ul>
+                <li style="--i:0"><span class="tick"><i class="ph ph-check"></i></span>DAS do Simples<small>guia emitida</small></li>
+                <li style="--i:1"><span class="tick"><i class="ph ph-check"></i></span>Folha e eSocial<small>enviado</small></li>
+                <li style="--i:2"><span class="tick"><i class="ph ph-check"></i></span>DCTFWeb<small>transmitida</small></li>
+                <li style="--i:3"><span class="tick"><i class="ph ph-check"></i></span>FGTS Digital<small>recolhido</small></li>
+              </ul>
+            </div>
+          </div>
+          <div class="tile-copy">
+            <div class="t"><i class="ph ph-receipt"></i><h3>Simples Nacional</h3></div>
+            <p>DAS, folha, eSocial e obrigações do mês entregues no prazo. Você só acompanha.</p>
+            <a class="link-arrow" data-wa="Olá! Tenho uma empresa no Simples Nacional e quero um orçamento." href="#contato">Falar sobre o Simples <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile-mei reveal" style="--i:2">
+          <div class="stage">
+            <div class="mei" data-mei data-target="74.8" aria-hidden="true">
+              <span class="label">Faturamento no ano</span>
+              <div class="mei-num"><span data-mei-num>74,8</span><small>%</small></div>
+              <p>do limite anual do MEI</p>
+              <div class="mei-bar"><span style="--v:.748"></span><i class="mei-flag"></i></div>
+              <div class="mei-scale"><span>jan</span><span>aviso aos 90%</span></div>
+            </div>
+          </div>
+          <div class="tile-copy">
+            <div class="t"><i class="ph ph-identification-badge"></i><h3>MEI</h3></div>
+            <p>DAS em dia, declaração anual e orientação para a hora de crescer para ME.</p>
+            <a class="link-arrow" data-wa="Olá! Sou MEI e quero ajuda com a contabilidade." href="#contato">Falar sobre MEI <i class="ph ph-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="also reveal">
+        <div class="also-head">
+          <span class="label">Também cuidamos de</span>
+          <p>Para empresas, produtores e pessoa física.</p>
+        </div>
+        <ul class="also-list">
+          <li><a data-wa="Olá! Quero abrir uma empresa." href="#contato"><span class="also-ic"><i class="ph ph-storefront"></i></span><span class="also-t"><b>Abertura de empresa</b><small>CNPJ, inscrições e alvará, com o enquadramento que paga menos imposto.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-wa="Olá! Quero trocar de contador." href="#contato"><span class="also-ic"><i class="ph ph-arrows-left-right"></i></span><span class="also-t"><b>Troca de contador</b><small>Pedimos os documentos ao contador anterior e assumimos sem perder prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-wa="Olá! Preciso declarar meu Imposto de Renda." href="#contato"><span class="also-ic"><i class="ph ph-file-text"></i></span><span class="also-t"><b>Imposto de Renda</b><small>Declaração de pessoa física revisada para evitar malha fina e usar todas as deduções.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-wa="Olá! Preciso de ajuda com folha de pagamento." href="#contato"><span class="also-ic"><i class="ph ph-users-three"></i></span><span class="also-t"><b>Folha de pagamento</b><small>Admissões, férias, rescisões, eSocial e pró-labore no prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-wa="Olá! Quero um planejamento tributário." href="#contato"><span class="also-ic"><i class="ph ph-scales"></i></span><span class="also-t"><b>Planejamento tributário</b><small>Análise do regime de impostos para ver se dá para pagar menos, dentro da lei.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="como-funciona" aria-labelledby="como-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <span class="eyebrow">03 — Como funciona</span>
+          <h2 class="h2" id="como-t">Começar com a gente é simples.</h2>
+        </div>
+        <p class="sub">Sem fila, sem formulário infinito. Uma conversa no WhatsApp e você já sabe quanto vai pagar.</p>
+      </div>
+      <ol class="stair">
+        <li class="reveal" style="--i:0"><span class="stair-fill"></span><span class="stair-n">01</span><h3>Você chama no WhatsApp</h3><p>Conta sua situação em poucas mensagens: propriedade rural, empresa ou MEI.</p><span class="chip"><span><i class="ph ph-whatsapp-logo"></i>Atendimento direto</span></span></li>
+        <li class="reveal" style="--i:1"><span class="stair-fill"></span><span class="stair-n">02</span><h3>A gente monta a proposta</h3><p>Você recebe o valor fechado e tudo o que está incluso, sem surpresa.</p><span class="chip"><span><i class="ph ph-tag"></i>Valor fechado</span></span></li>
+        <li class="reveal" style="--i:2"><span class="stair-fill"></span><span class="stair-n">03</span><h3>Cuidamos do resto</h3><p>Impostos, guias e prazos ficam com a gente. Você só acompanha.</p><span class="chip"><span><i class="ph ph-calendar-check"></i>Todo mês</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="por-que" aria-labelledby="why-t" style="padding-top:0">
+    <div class="wrap why-grid">
+      <div class="why-main reveal">
+        <span class="eyebrow">04 — Por que a Eficaz</span>
+        <h2 class="h2" id="why-t">Um contador perto de você, que atende de verdade.</h2>
+        <ul class="reasons">
+          <li><span class="r-ic"><i class="ph ph-map-pin"></i></span><div><b>Escritório no centro de São Borja</b><span>Atendimento presencial na Rua General Marques quando você precisar.</span></div></li>
+          <li><span class="r-ic"><i class="ph ph-plant"></i></span><div><b>Contabilidade rural de perto</b><span>Acompanhamos as mudanças da Reforma Tributária para o produtor da região.</span></div></li>
+          <li><span class="r-ic"><i class="ph ph-chat-circle-text"></i></span><div><b>Resposta rápida pelo WhatsApp</b><span>Dúvida sobre guia ou prazo? É só mandar mensagem.</span></div></li>
+          <li><span class="r-ic"><i class="ph ph-tag"></i></span><div><b>Preço justo e transparente</b><span>Mensalidade fechada, sem taxas escondidas.</span></div></li>
+          <li><span class="r-ic"><i class="ph ph-chat-text"></i></span><div><b>Linguagem simples</b><span>A gente explica sem “contabilês” o que está acontecendo com os seus números.</span></div></li>
+        </ul>
+      </div>
+
+      <aside class="reviews reveal" style="--i:1" aria-labelledby="rv-t">
+        <div class="rv-head">
+          <span class="rv-src"><i class="ph ph-google-logo"></i>Avaliações no Google</span>
+          <span class="stars" aria-hidden="true"><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i></span>
+        </div>
+        <div class="skel" aria-hidden="true">
+          <div class="sk"><span class="sk-av"></span><span class="sk-lines"><span class="sk-line" style="width:42%"></span><span class="sk-line" style="width:92%"></span><span class="sk-line" style="width:71%"></span></span></div>
+          <div class="sk"><span class="sk-av"></span><span class="sk-lines"><span class="sk-line" style="width:35%"></span><span class="sk-line" style="width:86%"></span><span class="sk-line" style="width:58%"></span></span></div>
+        </div>
+        <div class="rv-empty">
+          <b id="rv-t">Espaço para as avaliações do Google</b>
+          <p>Aqui entram depoimentos reais de clientes da Eficaz, puxados do perfil no Google. Prova social é o que mais faz um visitante virar contato.</p>
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&query=Eficaz+Contabilidade+R.+Gen.+Marques+728+S%C3%A3o+Borja" target="_blank" rel="noopener">Ver perfil no Google Maps <i class="ph ph-arrow-up-right"></i></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" id="duvidas" aria-labelledby="faq-t" style="padding-top:0">
+    <div class="wrap faq-grid">
+      <div class="faq-head reveal">
+        <span class="eyebrow">05 — Dúvidas</span>
+        <h2 class="h2" id="faq-t">Perguntas que todo mundo faz.</h2>
+        <p>Não achou a sua?</p>
+        <a class="link-arrow" data-wa="Olá! Tenho uma dúvida sobre contabilidade." href="#contato">Pergunte no WhatsApp <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="faq reveal" style="--i:1">
+        <details>
+          <summary>O que muda para o produtor rural em 2027?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">A CBS entra em vigor em 2027 no lugar do PIS e da Cofins, e o IBS começa a substituir o ICMS e o ISS aos poucos a partir de 2029. O produtor rural contribuinte passa a se creditar do imposto pago nas compras da produção, como insumos, diesel, máquinas e frete. Para aproveitar esse crédito, as notas e o livro-caixa precisam estar organizados.</p>
+        </details>
+        <details>
+          <summary>Todo produtor rural vai ser contribuinte do IBS e da CBS?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">Depende do faturamento. Acima do limite definido em lei, o produtor entra como contribuinte; abaixo dele, pode escolher. A gente analisa os números da sua propriedade e mostra qual caminho compensa.</p>
+        </details>
+        <details>
+          <summary>Vocês atendem empresas do Lucro Real e do Presumido?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">Sim. Atendemos empresas do Lucro Real, do Lucro Presumido e do Simples Nacional, além de MEIs. Também analisamos se o seu regime atual é o que faz a empresa pagar menos imposto.</p>
+        </details>
+        <details>
+          <summary>Como funciona a troca de contador?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">Você nos autoriza e a gente entra em contato com o contador atual para pegar os documentos. A transição é feita sem você perder nenhum prazo.</p>
+        </details>
+        <details>
+          <summary>MEI precisa de contador?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">Não é obrigatório, mas ajuda a evitar multas, manter o DAS e a declaração anual em dia e saber a hora certa de virar ME.</p>
+        </details>
+        <details>
+          <summary>Atendem só São Borja?<span class="faq-x" aria-hidden="true"><i class="ph ph-plus"></i></span></summary>
+          <p class="faq-a">Nosso escritório fica em São Borja, mas também atendemos empresas e produtores da região de forma online.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contato" aria-labelledby="contato-t" style="padding-top:0">
+    <div class="wrap contact-grid">
+      <div class="contact-main reveal">
+        <span class="eyebrow">06 — Contato</span>
+        <h2 class="h2" id="contato-t">Vamos preparar seus números para 2027?</h2>
+        <p class="sub">Chama no WhatsApp ou preencha o formulário. Você recebe seu orçamento ainda hoje.</p>
+        <a class="btn btn-primary magnetic" data-wa="Olá! Vim pelo site e quero um orçamento de contabilidade." href="#contato">
+          <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Chamar no WhatsApp
+        </a>
+        <dl class="addr">
+          <div><dt class="label">Endereço</dt><dd>R. Gen. Marques, 728, Sala 202<br>Centro, São Borja, RS</dd></div>
+          <div><dt class="label">WhatsApp</dt><dd><a data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">(55) 98431-5893</a></dd></div>
+        </dl>
+        <figure class="map">
+          <div class="map-frame">
+            <iframe title="Mapa com a localização da Eficaz Contabilidade em São Borja" src="https://maps.google.com/maps?q=Eficaz+Contabilidade,+R.+Gen.+Marques,+728,+S%C3%A3o+Borja+-+RS&amp;z=17&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <figcaption class="map-cap">
+            <span><i class="ph ph-map-pin"></i>R. Gen. Marques, 728 · Sala 202</span>
+            <a class="link-arrow" style="margin:0" href="https://www.google.com/maps/dir/?api=1&amp;destination=Eficaz+Contabilidade,+R.+Gen.+Marques,+728,+S%C3%A3o+Borja+-+RS" target="_blank" rel="noopener">Como chegar <i class="ph ph-arrow-up-right"></i></a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <form class="form reveal" style="--i:1" id="lead" novalidate>
+        <div class="form-body">
+          <div class="form-head">
+            <h3>Receba um orçamento</h3>
+            <p>Preencha e a gente te chama no WhatsApp.</p>
+          </div>
+          <div class="field">
+            <label for="nome">Seu nome</label>
+            <input class="input" id="nome" name="nome" autocomplete="name" required placeholder="Como podemos te chamar?" aria-describedby="nome-help nome-err">
+            <small class="help" id="nome-help">Só o primeiro nome já basta.</small>
+            <small class="err" id="nome-err" hidden><i class="ph ph-warning-circle"></i>Diz pra gente como te chamar.</small>
+          </div>
+          <fieldset class="field">
+            <legend>Sua situação</legend>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="tipo" value="Sou produtor rural" checked><span>Produtor rural</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Tenho empresa no Lucro Real ou Presumido"><span>Lucro Real ou Presumido</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Tenho empresa no Simples Nacional"><span>Simples Nacional</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Sou MEI"><span>MEI</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Quero abrir uma empresa"><span>Abrir empresa</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Quero trocar de contador"><span>Trocar de contador</span></label>
+              <label class="pill"><input type="radio" name="tipo" value="Preciso declarar Imposto de Renda"><span>Imposto de Renda</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="cidade">Cidade</label>
+            <input class="input" id="cidade" name="cidade" value="São Borja" autocomplete="address-level2" aria-describedby="cidade-help">
+            <small class="help" id="cidade-help">Atendemos São Borja e região, também online.</small>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit"><span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span><span class="btn-label">Quero meu orçamento</span></button>
+          <p class="fine"><i class="ph ph-lock-simple"></i>Sem compromisso. Seus dados não são compartilhados.</p>
+        </div>
+
+        <div class="form-done" hidden tabindex="-1" role="status">
+          <span class="done-ic"><i class="ph ph-check"></i></span>
+          <h3>Pronto, <span data-done-name></span>.</h3>
+          <p>Abrimos o WhatsApp com a sua mensagem numa nova aba. Se ela não abriu, use o botão abaixo.</p>
+          <a class="btn btn-primary" data-done-link href="#" target="_blank" rel="noopener"><span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Abrir o WhatsApp</a>
+          <button class="text-btn" type="button" data-done-reset>Preencher de novo</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© <span data-year>2026</span> Eficaz Contabilidade · São Borja, RS</span>
+    <span>R. Gen. Marques, 728, Sala 202 · Centro</span>
+    <a href="#topo">Voltar ao topo</a>
+  </div>
+</footer>
+
+<a class="fab" href="#contato" data-wa="Olá! Vim pelo site e quero falar com um contador." aria-label="Falar no WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+
+<script>
+(() => {
+  const PHONE = "5555984315893";
+  const waLink = t => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(t);
+  document.querySelectorAll("[data-wa]").forEach(a => { a.href = waLink(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll("[data-year]").forEach(el => { el.textContent = new Date().getFullYear(); });
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const brl = v => "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // Cancellable timeouts and frames, so each loop can be stopped cleanly.
+  function timers() {
+    const ids = new Set(), frames = new Set();
+    return {
+      wait(ms, fn) { const id = setTimeout(() => { ids.delete(id); fn(); }, ms); ids.add(id); },
+      frame(fn) { const id = requestAnimationFrame(now => { frames.delete(id); fn(now); }); frames.add(id); },
+      clear() { ids.forEach(clearTimeout); frames.forEach(cancelAnimationFrame); ids.clear(); frames.clear(); }
+    };
+  }
+
+  // Runs a loop only while its element is on screen and the tab is visible.
+  function whileVisible(el, start) {
+    let stop = null, inView = false;
+    const sync = () => {
+      const on = inView && !document.hidden;
+      if (on && !stop) stop = start();
+      else if (!on && stop) { stop(); stop = null; }
+    };
+    new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }, { threshold: 0.2 }).observe(el);
+    document.addEventListener("visibilitychange", sync);
+  }
+
+  function countTo(el, from, to, ms, t, fmt) {
+    const t0 = performance.now();
+    const step = now => {
+      const p = Math.min((now - t0) / ms, 1);
+      const e = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+      el.textContent = fmt(from + (to - from) * e);
+      if (p < 1) t.frame(step);
+    };
+    t.frame(step);
+  }
+
+  // FLIP: animate list children from their old position to the new one.
+  function flip(list, mutate) {
+    const kids = [...list.children];
+    const before = new Map(kids.map(k => [k, k.getBoundingClientRect().top]));
+    mutate();
+    kids.forEach(k => {
+      const dy = before.get(k) - k.getBoundingClientRect().top;
+      if (Math.abs(dy) > 0.5) k.animate([{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }], { duration: 800, easing: "cubic-bezier(.16,1,.3,1)" });
+    });
+  }
+
+  // Scroll reveals
+  const reveals = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) reveals.forEach(el => el.classList.add("in"));
+  else {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // Hero ledger: pending notes get posted one by one and sink to the bottom.
+  const ledgerEl = document.querySelector("[data-ledger]");
+  if (ledgerEl) {
+    const list = ledgerEl.querySelector(".lg-list");
+    const rows = [...list.children];
+    const initial = rows.map(r => r.classList.contains("done"));
+    const sumEl = ledgerEl.querySelector("[data-lg-sum]");
+    const countEl = ledgerEl.querySelector("[data-lg-count]");
+    const bar = ledgerEl.querySelector("[data-lg-bar]");
+    const toast = ledgerEl.querySelector(".toast");
+    const toastText = toast.querySelector("[data-toast-text]");
+    let shown = 0;
+    const total = () => rows.filter(r => r.classList.contains("done")).reduce((s, r) => s + parseFloat(r.dataset.val), 0);
+    const paint = t => {
+      const done = list.querySelectorAll(".done").length;
+      countEl.textContent = done;
+      bar.style.transform = `scaleX(${done / rows.length})`;
+      const to = total();
+      if (t) countTo(sumEl, shown, to, 900, t, brl); else sumEl.textContent = brl(to);
+      shown = to;
+    };
+    paint();
+    if (!reduce) whileVisible(ledgerEl, () => {
+      const t = timers();
+      const reset = () => {
+        flip(list, () => rows.forEach((r, i) => { r.classList.toggle("done", initial[i]); list.appendChild(r); }));
+        paint(t);
+      };
+      const next = () => {
+        const row = list.querySelector(".row:not(.done)");
+        if (!row) { t.wait(3000, () => { reset(); t.wait(1800, next); }); return; }
+        flip(list, () => { row.classList.add("done"); list.appendChild(row); });
+        row.classList.remove("just"); void row.offsetWidth; row.classList.add("just");
+        paint(t);
+        toastText.textContent = row.dataset.toast;
+        toast.classList.add("show");
+        t.wait(3000, () => toast.classList.remove("show"));
+        t.wait(3700, next);
+      };
+      reset();
+      t.wait(1400, next);
+      return () => { t.clear(); toast.classList.remove("show"); };
+    });
+  }
+
+  // Fill, hold, empty loops for the service visuals (state lives in CSS via .reset).
+  function cycle(el, { hold = 4600, gap = 900, onFill } = {}) {
+    if (!el || reduce) return;
+    el.classList.add("reset");
+    whileVisible(el, () => {
+      const t = timers();
+      const fill = () => {
+        el.classList.remove("reset");
+        if (onFill) onFill(t);
+        t.wait(hold, () => { el.classList.add("reset"); t.wait(gap, fill); });
+      };
+      t.wait(250, fill);
+      return () => t.clear();
+    });
+  }
+  cycle(document.querySelector("[data-cat]"), { hold: 5200 });
+  cycle(document.querySelector("[data-cmp]"), { hold: 4800 });
+  cycle(document.querySelector("[data-chk]"), { hold: 4400 });
+  const mei = document.querySelector("[data-mei]");
+  if (mei) {
+    const num = mei.querySelector("[data-mei-num]");
+    const target = parseFloat(mei.dataset.target);
+    const fmt = v => v.toFixed(1).replace(".", ",");
+    if (!reduce) num.textContent = fmt(0);
+    cycle(mei, { hold: 4400, onFill: t => countTo(num, 0, target, 1500, t, fmt) });
+  }
+
+  // Magnetic buttons: spring (stiffness 100, damping 20) written to CSS vars, no layout reads per frame.
+  if (finePointer && !reduce) document.querySelectorAll(".magnetic").forEach(el => {
+    let x = 0, y = 0, vx = 0, vy = 0, tx = 0, ty = 0, raf = 0, last = 0;
+    const clamp = v => Math.max(-10, Math.min(10, v));
+    const frame = now => {
+      const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
+      last = now;
+      vx += (-100 * (x - tx) - 20 * vx) * dt; x += vx * dt;
+      vy += (-100 * (y - ty) - 20 * vy) * dt; y += vy * dt;
+      el.style.setProperty("--mx", x.toFixed(2) + "px");
+      el.style.setProperty("--my", y.toFixed(2) + "px");
+      if (Math.abs(x - tx) + Math.abs(y - ty) + Math.abs(vx) + Math.abs(vy) > 0.02) raf = requestAnimationFrame(frame);
+      else { raf = 0; last = 0; }
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    el.addEventListener("pointermove", e => {
+      const r = el.getBoundingClientRect();
+      tx = clamp((e.clientX - (r.left - x + r.width / 2)) * 0.25);
+      ty = clamp((e.clientY - (r.top - y + r.height / 2)) * 0.35);
+      kick();
+    });
+    el.addEventListener("pointerleave", () => { tx = 0; ty = 0; kick(); });
+  });
+
+  // Map skeleton shimmers behind the iframe until the embed loads.
+  const map = document.querySelector(".map");
+  if (map) map.querySelector("iframe").addEventListener("load", () => map.classList.add("loaded"), { once: true });
+
+  // Floating WhatsApp: only after the hero, hidden again over the contact form.
+  const fab = document.querySelector(".fab");
+  const hero = document.querySelector(".hero");
+  const contact = document.getElementById("contato");
+  if (fab && hero && contact && "IntersectionObserver" in window) {
+    let heroIn = true, contactIn = false;
+    const fio = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.target === hero) heroIn = e.isIntersecting; else contactIn = e.isIntersecting; });
+      fab.classList.toggle("show", !heroIn && !contactIn);
+    });
+    fio.observe(hero); fio.observe(contact);
+  }
+
+  // Lead form builds a WhatsApp message
+  const form = document.getElementById("lead");
+  const nome = form.querySelector("#nome");
+  const err = form.querySelector("#nome-err");
+  const btn = form.querySelector("button[type=submit]");
+  const label = btn.querySelector(".btn-label");
+  const done = form.querySelector(".form-done");
+  const setErr = on => { err.hidden = !on; nome.setAttribute("aria-invalid", on ? "true" : "false"); };
+  nome.addEventListener("input", () => { if (nome.value.trim()) setErr(false); });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const name = nome.value.trim();
+    if (!name) {
+      setErr(true);
+      nome.classList.remove("shake"); void nome.offsetWidth; nome.classList.add("shake");
+      nome.focus();
+      return;
+    }
+    const tipo = form.querySelector("input[name=tipo]:checked").value;
+    const cidade = form.querySelector("#cidade").value.trim() || "São Borja";
+    const url = waLink(`Olá! Meu nome é ${name}. ${tipo} e sou de ${cidade}. Gostaria de um orçamento.`);
+    window.open(url, "_blank", "noopener");
+    btn.classList.add("loading");
+    label.textContent = "Abrindo o WhatsApp";
+    setTimeout(() => {
+      done.querySelector("[data-done-name]").textContent = name.split(/\s+/)[0];
+      done.querySelector("[data-done-link]").href = url;
+      form.classList.add("is-done");
+      done.hidden = false;
+      done.focus();
+      btn.classList.remove("loading");
+      label.textContent = "Quero meu orçamento";
+    }, 700);
+  });
+  done.querySelector("[data-done-reset]").addEventListener("click", () => {
+    form.classList.remove("is-done");
+    done.hidden = true;
+    nome.value = "";
+    setErr(false);
+    nome.focus();
+  });
+})();
+</script>
+</body>
+</html>
