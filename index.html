@@ -80,6 +80,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <script>document.documentElement.classList.add("js")</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VTBKPYBTW2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// Only the official domain is measured; local tests and previews stay out of the reports.
+window["ga-disable-G-VTBKPYBTW2"] = !/(^|\.)eficazcontabilidadesb\.com\.br$/.test(location.hostname);
+gtag("js", new Date());
+gtag("config", "G-VTBKPYBTW2");
+</script>
 <style>
 /* Layout: floating glass nav; asymmetric hero (copy left, animated rural ledger right); obligations ticker;
    dark Reforma Tributária slab with timeline; services bento sized by priority (rural > Real/Presumido > Simples > MEI);
@@ -375,19 +384,12 @@ section{scroll-margin-top:96px}
 .rv-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:18px;border-bottom:1px dashed var(--rule-2)}
 .rv-src{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.9375rem}
 .rv-src i{font-size:1.25rem}
-.stars{display:flex;gap:2px;color:var(--rule-2);font-size:1rem}
-.skel{display:grid;gap:20px;padding:24px 0}
-.sk{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start}
-.sk-lines{display:grid;gap:8px;padding-top:4px}
-.sk-av,.sk-line{position:relative;overflow:hidden;background:var(--sunk)}
-.sk-av{width:40px;height:40px;border-radius:50%}
-.sk-line{height:10px;border-radius:6px}
-.sk-av::after,.sk-line::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:translateX(-100%);animation:shimmer 1.9s var(--ease) infinite}
-@keyframes shimmer{to{transform:translateX(100%)}}
-.rv-empty{padding-top:22px;border-top:1px dashed var(--rule-2)}
-.rv-empty b{display:block;font-size:1.0625rem;letter-spacing:-.01em}
-.rv-empty p{color:var(--ink-2);font-size:.9rem;margin-top:6px}
-.rv-empty .link-arrow{margin-top:14px}
+.rv-body{display:grid;gap:14px;justify-items:start;padding-top:24px}
+.rv-body h3{font-size:1.375rem;letter-spacing:-.02em}
+.rv-body p{color:var(--ink-2);font-size:.9375rem}
+.rv-stars{display:flex;gap:6px;margin:6px 0 4px}
+.rv-stars svg{width:28px;height:28px;fill:transparent;stroke:var(--ink-3);stroke-width:1.5;stroke-linejoin:round;transition:fill .35s var(--ease),stroke .35s var(--ease),transform .5s var(--spring);transition-delay:calc(var(--i) * 70ms)}
+.reviews:has(.rv-cta:hover) .rv-stars svg,.reviews:has(.rv-cta:focus-visible) .rv-stars svg{fill:var(--ink);stroke:var(--ink);transform:translateY(-2px)}
 
 /* ---------- faq ---------- */
 .faq-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;align-items:start}
@@ -475,6 +477,15 @@ fieldset.field legend{padding:0;margin-bottom:8px}
 .fab:active{scale:.95}
 .fab::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 2px var(--accent);animation:ring 2.6s var(--ease) infinite}
 
+/* ---------- privacy notice ---------- */
+.notice{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;align-items:center;gap:14px;max-width:420px;padding:12px 12px 12px 16px;border-radius:18px;background:rgba(26,31,28,.95);color:var(--bg);font-size:.8125rem;line-height:1.45;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 40px -20px rgba(26,31,28,.6);opacity:0;transform:translateY(16px);transition:opacity .4s var(--ease),transform .6s var(--spring)}
+.notice[hidden]{display:none}
+.notice.show{opacity:1;transform:none}
+.notice a{color:var(--accent-light)}
+.notice-ok{flex:none;height:36px;padding:0 16px;border:0;border-radius:999px;background:var(--bg);color:var(--ink);font:600 .8125rem/1 var(--sans);cursor:pointer;transition:scale .2s var(--ease)}
+.notice-ok:active{scale:.96}
+.notice-ok:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px}
+
 /* ---------- reveal ---------- */
 .js .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
 .js .reveal.in{opacity:1;transform:none}
@@ -521,6 +532,8 @@ fieldset.field legend{padding:0;margin-bottom:8px}
   .addr div{grid-template-columns:1fr;gap:4px}
   .map-frame{height:240px}
   .faq-a{padding-right:0}
+  .notice{right:84px;max-width:none}
+  .rv-head .label{display:none}
   .ticker-label{display:none}
   .hide-sm{display:none}
   .lg-foot{grid-template-columns:1fr}
@@ -530,7 +543,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .ticker-move{animation:none!important}
-  .dot::after,.fab::after,.sk-av::after,.sk-line::after,.tl-pulse,.map-frame::before{animation:none!important;opacity:0}
+  .dot::after,.fab::after,.tl-pulse,.map-frame::before{animation:none!important;opacity:0}
 }
 </style>
 </head>
@@ -552,7 +565,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
         <li><a href="#duvidas">Dúvidas</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
-      <a class="btn btn-primary btn-sm magnetic" data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">
+      <a class="btn btn-primary btn-sm magnetic" data-cta="menu" data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">
         <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>WhatsApp
       </a>
     </div>
@@ -568,7 +581,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
         <h1 id="hero-t" class="rise" style="--i:1">Em 2027, o imposto que você paga na produção vira crédito. <span>Se as notas estiverem em ordem.</span></h1>
         <p class="lead rise" style="--i:2">Com a Reforma Tributária, o produtor rural contribuinte do <strong>IBS e da CBS</strong> passa a se creditar do imposto pago em insumos, diesel, máquinas e frete. A Eficaz organiza a contabilidade da sua propriedade para esse crédito não ficar na mesa.</p>
         <div class="cta-row rise" style="--i:3">
-          <a class="btn btn-primary magnetic" data-wa="Olá! Sou produtor rural e quero preparar minha propriedade para o IBS e a CBS em 2027." href="#contato">
+          <a class="btn btn-primary magnetic" data-cta="topo" data-wa="Olá! Sou produtor rural e quero preparar minha propriedade para o IBS e a CBS em 2027." href="#contato">
             <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Falar sobre contabilidade rural
           </a>
           <a class="btn btn-ghost" href="#servicos">Ver todos os serviços <i class="ph ph-arrow-down"></i></a>
@@ -654,7 +667,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
         <span class="eyebrow">01 — Reforma Tributária</span>
         <h2 class="h2" id="reforma-t">O que muda para o produtor rural até 2033.</h2>
         <p class="sub">O IBS e a CBS vão substituir aos poucos o PIS, a Cofins, o ICMS e o ISS. Para o produtor rural contribuinte, a maior mudança é poder se creditar do imposto pago nas compras da produção.</p>
-        <a class="btn btn-primary magnetic" data-wa="Olá! Sou produtor rural e quero entender como a Reforma Tributária afeta a minha propriedade." href="#contato">
+        <a class="btn btn-primary magnetic" data-cta="reforma" data-wa="Olá! Sou produtor rural e quero entender como a Reforma Tributária afeta a minha propriedade." href="#contato">
           <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Entender o meu caso
         </a>
         <p class="fine-print"><i class="ph ph-info"></i>Conteúdo informativo. As regras variam conforme o faturamento e o enquadramento de cada produtor.</p>
@@ -741,7 +754,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
             <h3>Contabilidade rural</h3>
             <p>Livro-caixa digital (LCDPR), ITR, Funrural e notas de produtor organizados mês a mês. Sua propriedade pronta para aproveitar o crédito do IBS e da CBS a partir de 2027.</p>
             <ul class="tags"><li>LCDPR</li><li>ITR</li><li>Funrural</li><li>Nota do produtor</li><li>IBS e CBS</li></ul>
-            <a class="link-arrow" data-wa="Olá! Sou produtor rural e quero saber sobre a contabilidade rural da Eficaz." href="#contato">Falar sobre contabilidade rural <i class="ph ph-arrow-right"></i></a>
+            <a class="link-arrow" data-cta="servico_rural" data-wa="Olá! Sou produtor rural e quero saber sobre a contabilidade rural da Eficaz." href="#contato">Falar sobre contabilidade rural <i class="ph ph-arrow-right"></i></a>
           </div>
         </article>
 
@@ -757,7 +770,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
           <div class="tile-copy">
             <div class="t"><i class="ph ph-buildings"></i><h3>Lucro Real e Presumido</h3></div>
             <p>Apuração completa, SPED, ECD e ECF. Comparamos os regimes para sua empresa pagar o menor imposto dentro da lei.</p>
-            <a class="link-arrow" data-wa="Olá! Tenho uma empresa no Lucro Real ou Presumido e quero falar sobre a contabilidade." href="#contato">Falar sobre minha empresa <i class="ph ph-arrow-right"></i></a>
+            <a class="link-arrow" data-cta="servico_real_presumido" data-wa="Olá! Tenho uma empresa no Lucro Real ou Presumido e quero falar sobre a contabilidade." href="#contato">Falar sobre minha empresa <i class="ph ph-arrow-right"></i></a>
           </div>
         </article>
 
@@ -776,7 +789,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
           <div class="tile-copy">
             <div class="t"><i class="ph ph-receipt"></i><h3>Simples Nacional</h3></div>
             <p>DAS, folha, eSocial e obrigações do mês entregues no prazo. Você só acompanha.</p>
-            <a class="link-arrow" data-wa="Olá! Tenho uma empresa no Simples Nacional e quero um orçamento." href="#contato">Falar sobre o Simples <i class="ph ph-arrow-right"></i></a>
+            <a class="link-arrow" data-cta="servico_simples" data-wa="Olá! Tenho uma empresa no Simples Nacional e quero um orçamento." href="#contato">Falar sobre o Simples <i class="ph ph-arrow-right"></i></a>
           </div>
         </article>
 
@@ -793,7 +806,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
           <div class="tile-copy">
             <div class="t"><i class="ph ph-identification-badge"></i><h3>MEI</h3></div>
             <p>DAS em dia, declaração anual e orientação para a hora de crescer para ME.</p>
-            <a class="link-arrow" data-wa="Olá! Sou MEI e quero ajuda com a contabilidade." href="#contato">Falar sobre MEI <i class="ph ph-arrow-right"></i></a>
+            <a class="link-arrow" data-cta="servico_mei" data-wa="Olá! Sou MEI e quero ajuda com a contabilidade." href="#contato">Falar sobre MEI <i class="ph ph-arrow-right"></i></a>
           </div>
         </article>
       </div>
@@ -804,11 +817,11 @@ fieldset.field legend{padding:0;margin-bottom:8px}
           <p>Para empresas, produtores e pessoa física.</p>
         </div>
         <ul class="also-list">
-          <li><a data-wa="Olá! Quero abrir uma empresa." href="#contato"><span class="also-ic"><i class="ph ph-storefront"></i></span><span class="also-t"><b>Abertura de empresa</b><small>CNPJ, inscrições e alvará, com o enquadramento que paga menos imposto.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
-          <li><a data-wa="Olá! Quero trocar de contador." href="#contato"><span class="also-ic"><i class="ph ph-arrows-left-right"></i></span><span class="also-t"><b>Troca de contador</b><small>Pedimos os documentos ao contador anterior e assumimos sem perder prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
-          <li><a data-wa="Olá! Preciso declarar meu Imposto de Renda." href="#contato"><span class="also-ic"><i class="ph ph-file-text"></i></span><span class="also-t"><b>Imposto de Renda</b><small>Declaração de pessoa física revisada para evitar malha fina e usar todas as deduções.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
-          <li><a data-wa="Olá! Preciso de ajuda com folha de pagamento." href="#contato"><span class="also-ic"><i class="ph ph-users-three"></i></span><span class="also-t"><b>Folha de pagamento</b><small>Admissões, férias, rescisões, eSocial e pró-labore no prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
-          <li><a data-wa="Olá! Quero um planejamento tributário." href="#contato"><span class="also-ic"><i class="ph ph-scales"></i></span><span class="also-t"><b>Planejamento tributário</b><small>Análise do regime de impostos para ver se dá para pagar menos, dentro da lei.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-cta="abertura_empresa" data-wa="Olá! Quero abrir uma empresa." href="#contato"><span class="also-ic"><i class="ph ph-storefront"></i></span><span class="also-t"><b>Abertura de empresa</b><small>CNPJ, inscrições e alvará, com o enquadramento que paga menos imposto.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-cta="troca_contador" data-wa="Olá! Quero trocar de contador." href="#contato"><span class="also-ic"><i class="ph ph-arrows-left-right"></i></span><span class="also-t"><b>Troca de contador</b><small>Pedimos os documentos ao contador anterior e assumimos sem perder prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-cta="imposto_renda" data-wa="Olá! Preciso declarar meu Imposto de Renda." href="#contato"><span class="also-ic"><i class="ph ph-file-text"></i></span><span class="also-t"><b>Imposto de Renda</b><small>Declaração de pessoa física revisada para evitar malha fina e usar todas as deduções.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-cta="folha" data-wa="Olá! Preciso de ajuda com folha de pagamento." href="#contato"><span class="also-ic"><i class="ph ph-users-three"></i></span><span class="also-t"><b>Folha de pagamento</b><small>Admissões, férias, rescisões, eSocial e pró-labore no prazo.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
+          <li><a data-cta="planejamento" data-wa="Olá! Quero um planejamento tributário." href="#contato"><span class="also-ic"><i class="ph ph-scales"></i></span><span class="also-t"><b>Planejamento tributário</b><small>Análise do regime de impostos para ver se dá para pagar menos, dentro da lei.</small></span><i class="ph ph-arrow-up-right also-go"></i></a></li>
         </ul>
       </div>
     </div>
@@ -848,16 +861,14 @@ fieldset.field legend{padding:0;margin-bottom:8px}
       <aside class="reviews reveal" style="--i:1" aria-labelledby="rv-t">
         <div class="rv-head">
           <span class="rv-src"><i class="ph ph-google-logo"></i>Avaliações no Google</span>
-          <span class="stars" aria-hidden="true"><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i><i class="ph ph-star"></i></span>
+          <span class="label">Eficaz Contabilidade</span>
         </div>
-        <div class="skel" aria-hidden="true">
-          <div class="sk"><span class="sk-av"></span><span class="sk-lines"><span class="sk-line" style="width:42%"></span><span class="sk-line" style="width:92%"></span><span class="sk-line" style="width:71%"></span></span></div>
-          <div class="sk"><span class="sk-av"></span><span class="sk-lines"><span class="sk-line" style="width:35%"></span><span class="sk-line" style="width:86%"></span><span class="sk-line" style="width:58%"></span></span></div>
-        </div>
-        <div class="rv-empty">
-          <b id="rv-t">Espaço para as avaliações do Google</b>
-          <p>Aqui entram depoimentos reais de clientes da Eficaz, puxados do perfil no Google. Prova social é o que mais faz um visitante virar contato.</p>
-          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&query=Eficaz+Contabilidade+R.+Gen.+Marques+728+S%C3%A3o+Borja" target="_blank" rel="noopener">Ver perfil no Google Maps <i class="ph ph-arrow-up-right"></i></a>
+        <div class="rv-body">
+          <h3 id="rv-t">Já é cliente da Eficaz?</h3>
+          <p>Conte como foi o atendimento. Sua avaliação no Google ajuda outros produtores e empresas de São Borja a encontrar um contador de confiança.</p>
+          <span class="rv-stars" aria-hidden="true"><svg viewBox="0 0 24 24" style="--i:0"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.1 1.2-6.6-4.8-4.6 6.6-.9z"/></svg><svg viewBox="0 0 24 24" style="--i:1"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.1 1.2-6.6-4.8-4.6 6.6-.9z"/></svg><svg viewBox="0 0 24 24" style="--i:2"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.1 1.2-6.6-4.8-4.6 6.6-.9z"/></svg><svg viewBox="0 0 24 24" style="--i:3"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.1 1.2-6.6-4.8-4.6 6.6-.9z"/></svg><svg viewBox="0 0 24 24" style="--i:4"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.6l-5.9 3.1 1.2-6.6-4.8-4.6 6.6-.9z"/></svg></span>
+          <a class="btn btn-primary rv-cta" data-review data-cta="avaliacoes" href="https://search.google.com/local/writereview?placeid=ChIJk3FoQ-PHVZQRzCAEbqcMGGo" target="_blank" rel="noopener"><span class="btn-ic"><i class="ph ph-star"></i></span>Avaliar no Google</a>
+          <a class="link-arrow" href="https://www.google.com/maps?cid=7644874280706253004" target="_blank" rel="noopener">Ver perfil no Google Maps <i class="ph ph-arrow-up-right"></i></a>
         </div>
       </aside>
     </div>
@@ -869,7 +880,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
         <span class="eyebrow">05 — Dúvidas</span>
         <h2 class="h2" id="faq-t">Perguntas que todo mundo faz.</h2>
         <p>Não achou a sua?</p>
-        <a class="link-arrow" data-wa="Olá! Tenho uma dúvida sobre contabilidade." href="#contato">Pergunte no WhatsApp <i class="ph ph-arrow-right"></i></a>
+        <a class="link-arrow" data-cta="duvidas" data-wa="Olá! Tenho uma dúvida sobre contabilidade." href="#contato">Pergunte no WhatsApp <i class="ph ph-arrow-right"></i></a>
       </div>
       <div class="faq reveal" style="--i:1">
         <details>
@@ -906,12 +917,12 @@ fieldset.field legend{padding:0;margin-bottom:8px}
         <span class="eyebrow">06 — Contato</span>
         <h2 class="h2" id="contato-t">Vamos preparar seus números para 2027?</h2>
         <p class="sub">Chama no WhatsApp ou preencha o formulário. Você recebe seu orçamento ainda hoje.</p>
-        <a class="btn btn-primary magnetic" data-wa="Olá! Vim pelo site e quero um orçamento de contabilidade." href="#contato">
+        <a class="btn btn-primary magnetic" data-cta="contato" data-wa="Olá! Vim pelo site e quero um orçamento de contabilidade." href="#contato">
           <span class="btn-ic"><i class="ph ph-whatsapp-logo"></i></span>Chamar no WhatsApp
         </a>
         <dl class="addr">
           <div><dt class="label">Endereço</dt><dd>R. Gen. Marques, 728, Sala 202<br>Centro, São Borja, RS</dd></div>
-          <div><dt class="label">WhatsApp</dt><dd><a data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">(55) 98431-5893</a></dd></div>
+          <div><dt class="label">WhatsApp</dt><dd><a data-cta="telefone_contato" data-wa="Olá! Vim pelo site e quero falar com um contador." href="#contato">(55) 98431-5893</a></dd></div>
           <div><dt class="label">Horário</dt><dd>Seg. 6h30 às 17h30<br>Ter. a sex. 7h30 às 17h30<br>Sáb. 8h às 11h30</dd></div>
         </dl>
         <figure class="map">
@@ -974,11 +985,16 @@ fieldset.field legend{padding:0;margin-bottom:8px}
   <div class="wrap foot-in">
     <span>© <span data-year>2026</span> Eficaz Contabilidade · São Borja, RS</span>
     <span>R. Gen. Marques, 728, Sala 202 · Centro</span>
-    <a href="#topo">Voltar ao topo</a>
+    <span><a href="/privacidade.html">Privacidade</a> · <a href="#topo">Voltar ao topo</a></span>
   </div>
 </footer>
 
-<a class="fab" href="#contato" data-wa="Olá! Vim pelo site e quero falar com um contador." aria-label="Falar no WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+<div class="notice" role="region" aria-label="Aviso de privacidade" hidden>
+  <p>Este site usa cookies do Google Analytics para contar visitas e cliques. <a href="/privacidade.html">Saiba mais</a></p>
+  <button class="notice-ok" type="button" data-notice-ok>Entendi</button>
+</div>
+
+<a class="fab" href="#contato" data-cta="botao_flutuante" data-wa="Olá! Vim pelo site e quero falar com um contador." aria-label="Falar no WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
 
 <script>
 (() => {
@@ -1141,6 +1157,25 @@ fieldset.field legend{padding:0;margin-bottom:8px}
     el.addEventListener("pointerleave", () => { tx = 0; ty = 0; kick(); });
   });
 
+  // Analytics: every WhatsApp button counts as "whatsapp_click", tagged with where it was clicked.
+  const track = (name, params) => { if (typeof window.gtag === "function") window.gtag("event", name, params); };
+  document.querySelectorAll("[data-wa]").forEach(a => a.addEventListener("click", () => track("whatsapp_click", { cta: a.dataset.cta || "outro" })));
+  document.querySelectorAll("[data-review]").forEach(a => a.addEventListener("click", () => track("review_click", { cta: a.dataset.cta || "avaliacoes" })));
+
+  // Privacy notice: shown once, dismissal remembered in this browser.
+  const notice = document.querySelector(".notice");
+  const NOTICE_KEY = "eficaz-aviso-cookies";
+  let seen = false;
+  try { seen = localStorage.getItem(NOTICE_KEY) === "1"; } catch (e) {}
+  if (notice && !seen) {
+    setTimeout(() => { notice.hidden = false; void notice.offsetWidth; notice.classList.add("show"); }, 1200);
+    notice.querySelector("[data-notice-ok]").addEventListener("click", () => {
+      try { localStorage.setItem(NOTICE_KEY, "1"); } catch (e) {}
+      notice.classList.remove("show");
+      setTimeout(() => { notice.hidden = true; }, 400);
+    });
+  }
+
   // Map skeleton shimmers behind the iframe until the embed loads.
   const map = document.querySelector(".map");
   if (map) map.querySelector("iframe").addEventListener("load", () => map.classList.add("loaded"), { once: true });
@@ -1179,6 +1214,7 @@ fieldset.field legend{padding:0;margin-bottom:8px}
     const tipo = form.querySelector("input[name=tipo]:checked").value;
     const cidade = form.querySelector("#cidade").value.trim() || "São Borja";
     const url = waLink(`Olá! Meu nome é ${name}. ${tipo} e sou de ${cidade}. Gostaria de um orçamento.`);
+    track("whatsapp_click", { cta: "formulario", situacao: tipo });
     window.open(url, "_blank", "noopener");
     btn.classList.add("loading");
     label.textContent = "Abrindo o WhatsApp";
