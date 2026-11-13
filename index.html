@@ -141,7 +141,7 @@ section{scroll-margin-top:96px}
 .btn-sm{min-height:46px;padding:4px 16px 4px 4px;font-size:.875rem;gap:8px}
 .btn-sm .btn-ic{width:38px;height:38px;font-size:1.125rem}
 .btn-block{width:100%}
-.link-arrow{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-weight:600;font-size:.9375rem;color:var(--accent-ink);text-decoration:none;width:fit-content}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;min-height:36px;margin-top:0;font-weight:600;font-size:.9375rem;color:var(--accent-ink);text-decoration:none;width:fit-content}
 .link-arrow i{transition:transform .5s var(--ease)}
 .link-arrow:hover i{transform:translateX(4px)}
 .link-arrow:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
@@ -149,7 +149,7 @@ section{scroll-margin-top:96px}
 /* ---------- nav ---------- */
 .nav{position:fixed;inset:12px 0 auto;z-index:40;padding-top:env(safe-area-inset-top,0px);pointer-events:none}
 .nav-bar{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 8px 0 14px;border-radius:999px;background:rgba(250,249,245,.74);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border:1px solid rgba(26,31,28,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 18px 40px -28px rgba(52,46,24,.35)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;min-height:36px;text-decoration:none}
 .brand-mark{width:34px;height:34px;border-radius:10px;background:var(--ink);display:grid;place-items:center}
 .brand-mark svg{width:20px;height:20px}
 .brand-name{display:grid;line-height:1.05}
@@ -1189,9 +1189,11 @@ fieldset.field legend{padding:0;margin-bottom:8px}
   const contact = document.getElementById("contato");
   if (fab && hero && contact && "IntersectionObserver" in window) {
     let heroIn = true, contactIn = false;
+    fab.inert = true;   // começa escondido: fora do foco do teclado
     const fio = new IntersectionObserver(es => {
       es.forEach(e => { if (e.target === hero) heroIn = e.isIntersecting; else contactIn = e.isIntersecting; });
       fab.classList.toggle("show", !heroIn && !contactIn);
+      fab.inert = !(!heroIn && !contactIn);
     });
     fio.observe(hero); fio.observe(contact);
   }
